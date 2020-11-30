@@ -29,12 +29,9 @@ sample(x, size = 6, replace = TRUE)
 
 # YOUR TURN: generate random numbers
 ## Sample 100 values between 3 and 103 with replacement
-
-
-
-
-
-
+x<- 3:103
+x
+sample(x, 100, replace=TRUE)
 
 
 
@@ -54,14 +51,7 @@ sample(x, size = 6, replace = TRUE)
 
 # YOUR TURN: generate random numbers
 ## Draw 100 values from a normal distribution with a mean of 0 and a sd of 1
-
-
-    
-    
-    
-    
-    
-    
+rnorm(n=100, mean=0, sd=1) 
 
     ### possible solutions
     rnorm(n=100, mean=0, sd=1)
@@ -69,66 +59,39 @@ sample(x, size = 6, replace = TRUE)
     rnorm(100) # if you sample from a normal distribution with a mean of 0 and a sd of 1, you do not need to provide them, they are the defaults
 
 ## Draw 50 values from a normal distribution with a mean of 10 and sd of 5
-
-
-    
-    
-    
-    
-    
-    
+rnorm(n=50, mean=10, sd=5) 
 
     ### possible solutions
     rnorm(50, 10, 5) 
     rnorm(sd=5, mean=10, n=50) # if you do not know what order is the default, label your arguments and input them in the order you want!
 
 ## Draw 1000 values from a poisson distribution with a lambda of 50
-
-
-    
-    
-    
-    
-    
-    
+rpois(n=100, lambda=50) 
 
     ### possible solutions
     rpois(n=1000, lambda=50)
     rpois(1000, 50)
 
 ## Draw 30 values from a uniform distribution between 0 and 10
-
-
-    
-    
-    
-    
-
-
+runif(n=30, min=0, max=10) 
+  
     ### possible solutions
     runif(n=30, min=0, max=10)
     runif(30, 0, 10)
 
 
-
-
 # repeat 
 ?replicate # replicate(n, expression)
-rnorm(10)
+rnorm(10) #=rnorm(n=10, mean=0, sd=1) 
 mean(rnorm(10))
-replicate(10,rnorm(10))
+replicate(10,rnorm(10)) #perform 10 repeats
 replicate(10, mean(rnorm(100)))
 hist(replicate(10, mean(rnorm(100))))
 
 # YOUR TURN: generate random numbers, repeat, and plot
 ## Replicate 1000 times the mean of 10 values drawn from a unifrom distribution between 0 and 10  
-
-
-
-
-
-
-
+a<- replicate(1000, mean(runif(n=10, min=0, max=10)))
+hist(a)
 
 
     ### possible solutions
@@ -137,14 +100,8 @@ hist(replicate(10, mean(rnorm(100))))
 
 
 ## Replicate 100 times the mean of 50 values drawn from a normal distribution of mean 10 and standard deviation 5  
-
-
-
-
-    
-    
-    
-    
+b<-replicate (100, mean(rnorm(50, 10, 5)))
+hist(b)
     
     
     ### possible solutions
@@ -195,9 +152,10 @@ abline(v=0, col="red", lty=2, lwd=2)
 hist(apply(x24, 2, sd), main="SD",col="grey", xlim=c(0.6,1.4))
 abline(v=1, col="red", lty=2, lwd=2)
 
-## 24 sims of same distribution N(0,1) with n=1000
+## 24 sims of same distribution N(0,1) with n=1000    ## the 2 between x24b reads column values (as opposed to rows)
 set.seed(10)
 x24b <- replicate(24, rnorm(1000,0,1))
+print(x24b)
 par(mfrow=c(3,8), mar=c(0,0,0,0))
 x24bPlot <- apply(x24b,2,function(x){
                hist(x, col="grey", xlim=c(-5,5), ylim=c(0,500), breaks=c(-5:5),
